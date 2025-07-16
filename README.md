@@ -9,3 +9,7 @@ This project allows you to scrape a Reddit user’s public posts and comments, o
 - Uses the latest LLMs (e.g., Llama 3.2-11B Vision Instruct) to extract insights about the user’s demographics, personality, interests, occupation, communication style, and motivations.
 - Outputs a comprehensive persona summary, citing evidence from the user’s Reddit activity.
 - Runs efficiently on any machine—no need for local GPU or large model downloads.
+
+# Notes
+
+The code can also run locally on any similar large language model (LLM), provided your computer has sufficient resources (CPU/GPU, RAM, and disk space) to load and run the model smoothly. You can use libraries like llama.cpp, transformers, or text-generation-webui to load compatible models such as Mistral, LLaMA 2/3, or Falcon in quantized formats for efficient inference on consumer hardware.While local inference avoids API costs and privacy concerns,for large-scale tasks or long prompts, cloud inference might remain the only practical option for many users.
