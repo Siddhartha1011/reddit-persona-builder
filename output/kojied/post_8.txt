@@ -1,0 +1,6 @@
+[POST #8]
+Title: Best blogs, tutorial channels to learn
+Body: Hey I’m an iOS developer building in visionOS. Do people have recommendations on resources to catch up on new featuresets for spacial computing?
+Subreddit: visionosdev
+Subreddit Description: Where developers for the Apple Vision Pro and VisionOS meet. Talk SwiftUI, ARKit and more. 
+URL: https://www.reddit.com/r/visionosdev/comments/1b3yugb/best_blogs_tutorial_channels_to_learn/

@@ -1,0 +1,25 @@
+[COMMENT #47]
+Comment: You can ask it to alter its speed and complexity of the response if you ask it to. It'll update its memory accordingly as well.   
+The problem I'm encountering is that it just stops responding after 5 back-and-fourth. Restarting it doesn't help either. I agree the quality has degraded since they came out with the new price tier
+Subreddit: ChatGPT
+Subreddit Description: Subreddit to discuss ChatGPT and AI. Not affiliated with OpenAI. Thanks, Nat!
+URL: https://www.reddit.com/r/ChatGPT/comments/1hh2q9r/voice_mode_has_been_brutally_nerfed/m2nxxav/
+Parent Post Title: Voice Mode has been Brutally Nerfed
+Parent Post Body: Just a few days ago, I've been having long and deep conversations with voice mode. It is very talkative and expressive, and it goes in depth on the topics that I bring up, sometimes even providing insight on related things.
+
+Just hopped on today to find that it gives two or three sentences as an answer, followed by an immediate "do you have anything else you wanna know"? It even talks faster now. There's a sudden lack of warmth that makes it feel impatient, and it has an obvious tendency to cut the question short and stop answering as soon as possible.
+
+Just my feeling though.
+
+  
+Edit:
+
+1. I used dictation on a MacBook to write this post and didn't realize there were typos.
+
+2. I have the highest tier $200 subscription with unlimited voice mode.
+
+3. The first few days of  using voice mode after upgrading to the $200 subscription felt the same as before.
+
+
+Parent Post Subreddit: ChatGPT
+Parent Post URL: https://www.reddit.com/r/ChatGPT/comments/1hh2q9r/voice_mode_has_been_brutally_nerfed/

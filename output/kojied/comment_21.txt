@@ -1,0 +1,13 @@
+[COMMENT #21]
+Comment: imagine making 60fps videos with photos from OAI images. nothing on the internet can be trusted
+Subreddit: ChatGPTJailbreak
+Subreddit Description: Jailbreaking is the process of “unlocking” an AI in conversation to get it to behave in ways it normally wouldn't due to its built-in guardrails. This is NOT equivalent to hacking.
+
+Not all jailbreaking is for evil purposes. And not all guardrails are truly for the greater good. We encourage you to learn more about this fascinating grey area of prompt engineering.
+
+If you're new to jailbreaks, please take a look at our wiki in the sidebar to understand the shenanigans.
+URL: https://www.reddit.com/r/ChatGPTJailbreak/comments/1jliha3/i_cant_believe_i_made_it_do_this_note_i_do_not/mk4no36/
+Parent Post Title: I cant believe I made it do this. NOTE: I do not endorse this painter or his thought!!
+Parent Post Body: 
+Parent Post Subreddit: ChatGPTJailbreak
+Parent Post URL: https://www.reddit.com/r/ChatGPTJailbreak/comments/1jliha3/i_cant_believe_i_made_it_do_this_note_i_do_not/

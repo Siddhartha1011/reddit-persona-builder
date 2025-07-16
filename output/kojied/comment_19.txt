@@ -1,0 +1,16 @@
+[COMMENT #19]
+Comment: It’s pretty hard to get consistent characters when they’re photorealistic tbh. I guess our eyes are more lenient when it’s cartoon.
+Any tips for photo realism would be appreciated!
+Subreddit: ChatGPT
+Subreddit Description: Subreddit to discuss ChatGPT and AI. Not affiliated with OpenAI. Thanks, Nat!
+URL: https://www.reddit.com/r/ChatGPT/comments/1jpagk5/to_me_the_most_impressive_new_feature_is_the/ml31o85/
+Parent Post Title: To me the most impressive new feature is the character consistency
+Parent Post Body: I know everyone is going to town ghiblifying everything, but to me the most impressive part of the new update is the character consistency feature.
+
+I already shared a few of these here a couple of days ago, where I crea- I mean generated a character and placed her in different parts of the world. What i shared back then were my literal first tries at this feature and one of my mistakes was doing the entire series in one chat session. I noticed that GPT will carry over details from one prompt over to the next unless you specifically ask it to reset your changes each time. A much cleaner way is starting a fresh chat with the original reference image of the character and then prompting the scene you want them in.
+
+Here are a few more attempts. I also tested a lot what I could get away with: sometimes giving as little information as possible to see what it could piece together, some prompts (like the one In the cab) were also insanely specific. One or two of these images I touched up slightly to fix tiny mistakes GPT hit it's limits and just didn't get quite right. 
+
+The artstyle still sometimes varies slightly, but it's still pretty close. Overall, pretty impressive. 
+Parent Post Subreddit: ChatGPT
+Parent Post URL: https://www.reddit.com/r/ChatGPT/comments/1jpagk5/to_me_the_most_impressive_new_feature_is_the/
