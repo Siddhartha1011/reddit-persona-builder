@@ -19,9 +19,13 @@ The code can also run locally on any similar large language model (LLM), provide
 - remove hf_token = input("Enter your Hugging Face API token: ").strip() 
 - Update Your Code:
   - change:
+
     def generate_persona_from_chunks(chunk_files, hf_token):
+    
       print("\n🧠 Using Hugging Face Inference API (cloud hosted Llama-3.2-11B-Vision-Instruct)...")
+    
       API_URL = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-11B-Vision-Instruct"
+    
       headers = {"Authorization": f"Bearer {hf_token}"}
 
       def query(prompt):
