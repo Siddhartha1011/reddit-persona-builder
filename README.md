@@ -15,7 +15,7 @@ This project allows you to scrape a Reddit user’s public posts and comments, o
 The code can also run locally on any similar large language model (LLM), provided your computer has sufficient resources (CPU/GPU, RAM, and disk space) to load and run the model smoothly. You can use libraries like llama.cpp, transformers, or text-generation-webui to load compatible models such as Mistral, LLaMA 2/3, or Falcon in quantized formats for efficient inference on consumer hardware.While local inference avoids API costs and privacy concerns,for large-scale tasks or long prompts, cloud inference might remain the only practical option for many users.
 
 # To run the code locally:
-### Update Your Code-
+### Update Your Code:
   ### change-
 
     def generate_persona_from_chunks(chunk_files, hf_token):
@@ -82,10 +82,13 @@ The code can also run locally on any similar large language model (LLM), provide
   
     hf_token = input("Enter your Hugging Face API token: ").strip()
 
-# Requirements
+# Requirements:
 - Python 3.10 (strictly recommended)
 - Internet connection (for Reddit & Hugging Face APIs)
 - Hugging Face account (if using cloud inference)
 - Optional: LLM model weights for local inference
+
+# Installation:
+
 
 
