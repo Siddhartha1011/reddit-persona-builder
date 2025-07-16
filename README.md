@@ -16,7 +16,7 @@ The code can also run locally on any similar large language model (LLM), provide
 
 # To run the code locally:
 ### Update Your Code:
-  ### Change-
+  ### Change:-
 
     def generate_persona_from_chunks(chunk_files, hf_token):
     
@@ -66,7 +66,7 @@ The code can also run locally on any similar large language model (LLM), provide
       
                 return "[API Exception]"
 
-  ### To this-
+  ### To:-
 
     def generate_persona_from_chunks(chunk_files, llm_model_path):
   
