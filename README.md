@@ -1,5 +1,3 @@
-# Reddit-Persona-Builder
- Scrape a Reddit user’s posts and comments, chunk the data, and generate a detailed persona analysis using state-of-the-art LLMs via the Hugging Face Inference API
 
 # Reddit User Persona Scraper & Analyzer
 This project allows you to scrape a Reddit user’s public posts and comments, organize the data into manageable text chunks, and then generate a detailed persona analysis using advanced large language models (LLMs) via the Hugging Face Inference API.
