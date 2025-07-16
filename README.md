@@ -20,7 +20,6 @@ The code can also run locally on any similar large language model (LLM), provide
 - Update Your Code:
   - change:
     def generate_persona_from_chunks(chunk_files, hf_token):
-      # Using Meta Llama 3.2-11B Vision Instruct model. You may need to accept terms or request access on Hugging Face.
       print("\n🧠 Using Hugging Face Inference API (cloud hosted Llama-3.2-11B-Vision-Instruct)...")
       API_URL = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-11B-Vision-Instruct"
       headers = {"Authorization": f"Bearer {hf_token}"}
