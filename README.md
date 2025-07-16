@@ -10,13 +10,13 @@ This project allows you to scrape a Reddit user’s public posts and comments, o
 - Outputs a comprehensive persona summary, citing evidence from the user’s Reddit activity.
 - Runs efficiently on any machine—no need for local GPU or large model downloads.
 
-# Notes
+# Notes:
 
 The code can also run locally on any similar large language model (LLM), provided your computer has sufficient resources (CPU/GPU, RAM, and disk space) to load and run the model smoothly. You can use libraries like llama.cpp, transformers, or text-generation-webui to load compatible models such as Mistral, LLaMA 2/3, or Falcon in quantized formats for efficient inference on consumer hardware.While local inference avoids API costs and privacy concerns,for large-scale tasks or long prompts, cloud inference might remain the only practical option for many users.
 
-## To run the code locally:
-### Update Your Code:
-  ### change:
+# To run the code locally:
+### Update Your Code-
+  ### change-
 
     def generate_persona_from_chunks(chunk_files, hf_token):
     
@@ -66,7 +66,7 @@ The code can also run locally on any similar large language model (LLM), provide
       
                 return "[API Exception]"
 
-  ### to this:
+  ### to this-
 
     def generate_persona_from_chunks(chunk_files, llm_model_path):
   
@@ -74,11 +74,11 @@ The code can also run locally on any similar large language model (LLM), provide
     
         llm = Llama(model_path=llm_model_path)
 
-  ### update the model path in CONFIGURATION:
+  ### update the model path in CONFIGURATION-
 
     MODEL_PATH = "ENTER THE MODEL PATH HERE"
   
-  ### remove this line in MAIN:
+  ### remove this line in MAIN-
   
     hf_token = input("Enter your Hugging Face API token: ").strip()
 
