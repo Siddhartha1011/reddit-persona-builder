@@ -16,7 +16,7 @@ The code can also run locally on any similar large language model (LLM), provide
 
 # To run the code locally:
 ### Update Your Code:
-  ### change-
+  ### Change-
 
     def generate_persona_from_chunks(chunk_files, hf_token):
     
@@ -66,7 +66,7 @@ The code can also run locally on any similar large language model (LLM), provide
       
                 return "[API Exception]"
 
-  ### to this-
+  ### To this-
 
     def generate_persona_from_chunks(chunk_files, llm_model_path):
   
@@ -89,6 +89,25 @@ The code can also run locally on any similar large language model (LLM), provide
 - Optional: LLM model weights for local inference
 
 # Installation:
+##### 1)Clone the Repository:-
 
+    git clone https://github.com/Siddhartha1011/reddit-persona-builder.git 
+    cd reddit-persona-builder
+
+##### 2)Create and Activate a Virtual Environment:-
+
+  macOS
+  
+    python3.10 -m venv reddit
+    source reddit/bin/activate
+
+  Windows
+
+    python -m venv reddit
+    .\reddit\Scripts\activate
+
+##### 3)Install Python Requirements:-
+
+    pip install -r requirements.txt
 
 
