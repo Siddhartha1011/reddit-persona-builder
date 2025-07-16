@@ -82,4 +82,10 @@ The code can also run locally on any similar large language model (LLM), provide
   
     hf_token = input("Enter your Hugging Face API token: ").strip()
 
+# Requirements
+- Python 3.10 (strictly recommended)
+- Internet connection (for Reddit & Hugging Face APIs)
+- Hugging Face account (if using cloud inference)
+- Optional: LLM model weights for local inference
+
 
