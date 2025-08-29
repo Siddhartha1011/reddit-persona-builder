@@ -1,9 +1,0 @@
-[COMMENT #26]
-Comment: Sounds like X
-Subreddit: ChatGPT
-Subreddit Description: Subreddit to discuss ChatGPT and AI. Not affiliated with OpenAI. Thanks, Nat!
-URL: https://www.reddit.com/r/ChatGPT/comments/1i2pwva/nuclear_hot_take_on_reddit/m7grdiv/
-Parent Post Title: Nuclear hot take on Reddit
-Parent Post Body: 
-Parent Post Subreddit: ChatGPT
-Parent Post URL: https://www.reddit.com/r/ChatGPT/comments/1i2pwva/nuclear_hot_take_on_reddit/

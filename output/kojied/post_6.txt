@@ -1,6 +1,0 @@
-[POST #6]
-Title: What’s a movie that best represents your childhood?
-Body: There's so many coming of age movies for boomers and millennials, what about for gen-Z?
-Subreddit: GenZ
-Subreddit Description: A place for members or non-members of Generation Z to talk and hang out. Gen-Z is widely considered to be 1996-2012, but may change based on your opinion.
-URL: https://www.reddit.com/r/GenZ/comments/1erotgn/whats_a_movie_that_best_represents_your_childhood/

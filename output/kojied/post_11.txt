@@ -1,6 +1,0 @@
-[POST #11]
-Title: Killer feature: accessing chatGPT (iPad app) and using audio as primary input
-Body: I just find this to be much easier than doing it on my Mac + display setup. Give it a try
-Subreddit: VisionPro
-Subreddit Description: Apple Vision Pro is a spatial computing headset developed by Apple. This subreddit is the largest and best hub for the community!
-URL: https://www.reddit.com/r/VisionPro/comments/1alf7av/killer_feature_accessing_chatgpt_ipad_app_and/

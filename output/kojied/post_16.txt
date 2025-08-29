@@ -1,6 +1,0 @@
-[POST #16]
-Title: Informative documentary video on YouTube
-Body: 
-Subreddit: NYCbike
-Subreddit Description: A resource for NYC-specific cycling events and information. Bike news that is not relevant to the New York area should be posted to /r/bicycling or /r/cycling instead. This is a great place to post and find group rides, questions about NYC cycling and bike shops, infrastructure changes, and cycling-related news. New to riding in the city? We'd love to help you get started!
-URL: https://www.reddit.com/r/NYCbike/comments/16n85uj/informative_documentary_video_on_youtube/
