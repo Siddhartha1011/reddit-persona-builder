@@ -2,16 +2,19 @@ import requests
 import json
 import os
 import time
-from llama_cpp import Llama
+from groq import Groq
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # -------------------------------
 # CONFIGURATION
 # -------------------------------
 
-MAX_POSTS = 50
-MAX_COMMENTS = 50
+MAX_POSTS = 20
+MAX_COMMENTS = 20
 OUTPUT_FOLDER = "output"
-MODEL_PATH = "Enter the model path here"
 USER_AGENT = "RedditPersonaBot/1.0"
 
 # Make sure output folder exists
@@ -176,63 +179,269 @@ Parent Post URL: {parent_post['permalink']}
     with open(index_path, "w", encoding="utf-8") as f:
         f.write("\n".join(index_lines))
 
-    print(f"✅ All chunks saved under: {user_dir}")
-    print(f"✅ Index file: {index_path}")
+    print(f" All chunks saved under: {user_dir}")
+    print(f" Index file: {index_path}")
     return user_dir, chunk_files
 
 # -------------------------------
-# LLM GENERATION
+# GROQ LLM GENERATION
 # -------------------------------
 
-def generate_persona_from_chunks(chunk_files, hf_token):
-    # Using Meta Llama 3.2-11B Vision Instruct model. You may need to accept terms or request access on Hugging Face.
-    print("\n🧠 Using Hugging Face Inference API (cloud hosted Llama-3.2-11B-Vision-Instruct)...")
-    API_URL = "https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-11B-Vision-Instruct"
-    headers = {"Authorization": f"Bearer {hf_token}"}
-
-    def query(prompt):
-        payload = {
-            "inputs": prompt,
-            "parameters": {"max_new_tokens": 512}
-        }
-        response = requests.post(API_URL, headers=headers, json=payload)
-        print(response.status_code, response.text)  # For debugging
-        try:
-            result = response.json()
-            # The output is a list of dicts with 'generated_text'
-            if isinstance(result, list) and 'generated_text' in result[0]:
-                return result[0]['generated_text']
-            elif isinstance(result, dict) and 'error' in result:
-                print(f"[!] API Error: {result['error']}")
-                return "[API Error]"
-            else:
-                return str(result)
-        except Exception as e:
-            print(f"[!] Exception parsing API response: {e}")
-            return "[API Exception]"
-
-    persona_chunks = []
+def generate_persona_from_chunks(chunk_files, groq_api_key=None):
+    print("\n Using Groq API with Llama-3.1-8B-Instant...")
+    
+    # Get API key from environment or parameter
+    api_key = groq_api_key or os.getenv('GROQ_API_KEY')
+    if not api_key:
+        raise ValueError("Groq API key not found. Please set GROQ_API_KEY in your .env file or pass it as parameter.")
+    
+    # Initialize Groq client
+    client = Groq(api_key=api_key)
+    
+    # Collect all chunk content first
+    all_chunks_content = []
+    print(" Reading all chunks...")
+    
     for chunk_file in chunk_files:
         with open(chunk_file, "r", encoding="utf-8") as f:
             chunk_text = f.read()
-
-        prompt = f"""You are a sociologist. Given the following Reddit activity chunk, extract any clues about the user's demographics, personality, interests, occupation, communication style, or motivations. Cite specific evidence from the chunk.\n\nReddit Activity Chunk:\n{chunk_text}\n\nInsights:"""
-
-        output = query(prompt)
-        # Remove the prompt from the output if present
-        insight = output.split("Insights:")[-1].strip() if "Insights:" in output else output.strip()
-        persona_chunks.append({
-            "chunk_file": chunk_file,
-            "insight": insight
+        all_chunks_content.append({
+            "chunk_file": os.path.basename(chunk_file),
+            "content": chunk_text
         })
+    
+    print(f" Processing {len(chunk_files)} chunks with smart batching...")
+    
+    # Try batch processing first (smaller groups)
+    try:
+        return generate_batch_analysis(chunk_files, client, all_chunks_content)
+    except Exception as e:
+        print(f"[!] Batch analysis failed: {e}")
+        print("⚠️  Falling back to individual chunk analysis...")
+        return generate_individual_chunk_analysis(chunk_files, client, all_chunks_content)
 
-    # Save all insights
-    insights_path = os.path.join(os.path.dirname(chunk_files[0]), "persona_insights.txt")
+def generate_batch_analysis(chunk_files, client, all_chunks_content):
+    """Process chunks in smaller batches to avoid token limits"""
+    batch_size = 8  # Process 8 chunks at a time
+    batch_insights = []
+    
+    # Create summary directory
+    user_dir = os.path.dirname(chunk_files[0])
+    summary_dir = os.path.join(user_dir, "summary")
+    os.makedirs(summary_dir, exist_ok=True)
+    print(f" Created summary directory: {summary_dir}")
+    
+    for i in range(0, len(all_chunks_content), batch_size):
+        batch = all_chunks_content[i:i+batch_size]
+        batch_num = (i // batch_size) + 1
+        total_batches = (len(all_chunks_content) + batch_size - 1) // batch_size
+        
+        print(f" Processing batch {batch_num}/{total_batches} ({len(batch)} chunks)...")
+        
+        # Combine batch content
+        batch_content = "\n\n" + "="*40 + "\n\n".join([
+            f"=== {chunk['chunk_file']} ===\n{chunk['content'][:1500]}" # Limit each chunk to 1500 chars
+            for chunk in batch
+        ])
+        
+        batch_prompt = f"""You are a sociologist analyzing a Reddit user's activity. Analyze this batch of posts/comments and extract persona insights.
+
+BATCH CONTENT:
+{batch_content}
+
+Provide insights about:
+- Demographics (age, location, education, etc.)
+- Personality traits
+- Interests and hobbies
+- Communication style
+- Values and motivations
+- Professional indicators
+
+Be concise but specific. Cite evidence from the posts/comments."""
+
+        try:
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are a sociologist analyzing Reddit activity. Provide concise, evidence-based persona insights."
+                    },
+                    {
+                        "role": "user",
+                        "content": batch_prompt
+                    }
+                ],
+                model="llama-3.1-8b-instant",
+                max_tokens=1000,
+                temperature=0.5,
+            )
+            
+            batch_insight = chat_completion.choices[0].message.content
+            batch_insights.append({
+                "batch_num": batch_num,
+                "insight": batch_insight,
+                "chunks": [chunk['chunk_file'] for chunk in batch]
+            })
+            
+            # Rate limiting
+            time.sleep(2)
+            
+        except Exception as e:
+            print(f"[!] Error processing batch {batch_num}: {e}")
+            batch_insights.append({
+                "batch_num": batch_num,
+                "insight": f"[API Error: {str(e)}]",
+                "chunks": [chunk['chunk_file'] for chunk in batch]
+            })
+    
+    # Save batch insights in summary directory
+    insights_path = os.path.join(summary_dir, "persona_insights.txt")
     with open(insights_path, "w", encoding="utf-8") as f:
-        for chunk in persona_chunks:
-            f.write(f"=== {chunk['chunk_file']} ===\n{chunk['insight']}\n\n")
+        f.write("REDDIT USER PERSONA ANALYSIS (Batch Processing)\n")
+        f.write("=" * 60 + "\n\n")
+        f.write(f"Analysis Date: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"Total Chunks: {len(all_chunks_content)}\n")
+        f.write(f"Processed in {len(batch_insights)} batches\n")
+        f.write("=" * 60 + "\n\n")
+        
+        for batch in batch_insights:
+            f.write(f"=== BATCH {batch['batch_num']} ANALYSIS ===\n")
+            f.write(f"Chunks: {', '.join(batch['chunks'])}\n\n")
+            f.write(f"{batch['insight']}\n\n")
+            f.write("-" * 50 + "\n\n")
 
-    print(f"✅ Persona insights saved to {insights_path}")
+    print(f" Batch persona insights saved to {insights_path}")
+    
+    # Generate final synthesis
+    generate_synthesis_from_batches(batch_insights, client, summary_dir)
+    
+    return insights_path
+
+def generate_synthesis_from_batches(batch_insights, client, summary_dir):
+    """Generate final persona synthesis from batch insights"""
+    print(" Synthesizing final persona profile...")
+    
+    # Combine batch insights (keeping it concise)
+    combined_insights = "\n\n".join([
+        f"BATCH {batch['batch_num']}: {batch['insight'][:800]}"  # Limit each batch insight
+        for batch in batch_insights
+        if not batch['insight'].startswith('[API Error')
+    ])
+    
+    if not combined_insights:
+        print("[!] No valid insights to synthesize")
+        return
+    
+    synthesis_prompt = f"""Based on the batch analyses below, create a comprehensive Reddit user persona profile. Look for recurring patterns and synthesize the information.
+
+BATCH INSIGHTS:
+{combined_insights}
+
+Create a final persona with these sections:
+1. DEMOGRAPHIC PROFILE
+2. CORE PERSONALITY 
+3. PRIMARY INTERESTS
+4. COMMUNICATION STYLE
+5. VALUES & MOTIVATIONS
+6. CONFIDENCE LEVELS
+
+Keep it concise but comprehensive. Focus on consistent patterns across batches."""
+
+    try:
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert sociologist creating final user personas from batch analyses."
+                },
+                {
+                    "role": "user",
+                    "content": synthesis_prompt
+                }
+            ],
+            model="llama-3.1-8b-instant",
+            max_tokens=1500,
+            temperature=0.3,
+        )
+        
+        synthesis = chat_completion.choices[0].message.content
+        
+        # Save synthesis in summary directory
+        synthesis_path = os.path.join(summary_dir, "persona_summary.txt")
+        with open(synthesis_path, "w", encoding="utf-8") as f:
+            f.write("FINAL REDDIT USER PERSONA SYNTHESIS\n")
+            f.write("=" * 60 + "\n\n")
+            f.write(f"Analysis Date: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write("=" * 60 + "\n\n")
+            f.write(synthesis)
+        
+        print(f" Final persona synthesis saved to {synthesis_path}")
+        
+    except Exception as e:
+        print(f"[!] Error generating synthesis: {e}")
+
+def generate_individual_chunk_analysis(chunk_files, client, all_chunks_content):
+    """Fallback: Process each chunk individually"""
+    persona_chunks = []
+    
+    # Create summary directory
+    user_dir = os.path.dirname(chunk_files[0])
+    summary_dir = os.path.join(user_dir, "summary")
+    os.makedirs(summary_dir, exist_ok=True)
+    print(f" Created summary directory: {summary_dir}")
+    
+    for i, chunk_data in enumerate(all_chunks_content, 1):
+        print(f"Processing chunk {i}/{len(all_chunks_content)}...")
+        
+        # Keep prompt concise
+        prompt = f"""Analyze this Reddit activity for persona clues:
+
+{chunk_data['content'][:1000]}  
+
+Extract:
+- Demographics
+- Personality 
+- Interests
+- Communication style
+- Motivations
+
+Be brief but specific."""
+
+        try:
+            chat_completion = client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                model="llama-3.1-8b-instant",
+                max_tokens=300,
+                temperature=0.7,
+            )
+            output = chat_completion.choices[0].message.content
+        except Exception as e:
+            print(f"[!] Error processing chunk {i}: {e}")
+            output = f"[API Error: {str(e)}]"
+        
+        persona_chunks.append({
+            "chunk_file": chunk_data["chunk_file"],
+            "insight": output
+        })
+        
+        time.sleep(1)  # Rate limiting
+
+    # Save individual insights in summary directory
+    insights_path = os.path.join(summary_dir, "persona_insights.txt")
+    with open(insights_path, "w", encoding="utf-8") as f:
+        f.write("REDDIT USER PERSONA ANALYSIS (Individual Chunks)\n")
+        f.write("=" * 60 + "\n\n")
+        
+        for chunk in persona_chunks:
+            f.write(f"=== {chunk['chunk_file']} ===\n")
+            f.write(f"{chunk['insight']}\n\n")
+
+    print(f" Individual chunk insights saved to {insights_path}")
     return insights_path
 
 # -------------------------------
@@ -241,11 +450,19 @@ def generate_persona_from_chunks(chunk_files, hf_token):
 
 if __name__ == "__main__":
     username = input("Enter Reddit username: ").strip()
-    hf_token = input("Enter your Hugging Face API token: ").strip()
+    
+    # Try to get API key from environment first
+    groq_api_key = os.getenv('GROQ_API_KEY')
+    if not groq_api_key:
+        groq_api_key = input("GROQ_API_KEY not found in .env file. Enter your Groq API key: ").strip()
 
+    print(f"\n Scraping Reddit activity for user: {username}")
     posts, comments = scrape_user_activity(username)
+    
+    print(f" Found {len(posts)} posts and {len(comments)} comments")
     user_dir, chunk_files = build_user_chunks(username, posts, comments)
 
-    # Run persona generation
-    insights_path = generate_persona_from_chunks(chunk_files, hf_token)
-    print(f"\n🎯 Persona summary is ready: {insights_path}")
+    # Run persona generation with Groq
+    insights_path = generate_persona_from_chunks(chunk_files, groq_api_key)
+    print(f"\n Persona analysis complete!")
+    print(f" Results saved in: {user_dir}/summary")
