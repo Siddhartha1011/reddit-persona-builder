@@ -1,0 +1,15 @@
+[COMMENT #7]
+Comment: GPT-5: “Quick Q, let me waste your tokens so I can force you into upgrading”
+Subreddit: ChatGPT
+Subreddit Description: Subreddit to discuss ChatGPT and AI. Not affiliated with OpenAI. Thanks, Nat!
+URL: https://www.reddit.com/r/ChatGPT/comments/1mn5tkb/chatgpt_5_thinking_is_useless_for_writing_this_is/n83nmdg/
+Parent Post Title: ChatGPT 5 Thinking is useless for writing. This is after I tried refreshing the initial prompt over and over
+Parent Post Body: I've never had this issue with 4.1; look I don't care about personality or parasocial nonsense. I just like writing and forming stories. This thread was going fine it wasn't even that long to hit the token limit. Out of nowhere it just starts spewing out random stuff and not even acknowledging my prompt. I've never had to fight a model so much. Look I'm glad they brought 4o back it's not 4.1 but it'll do, but I was really looking forward to 5 because of the narrative capabilities. I know it's still new, I know there are probably bugs to work out but when ChatGPT 4 came out it worked right out the gate, sure you had to tweak somethings but not like this. 
+
+I've been using this same (integrate &amp; expand) order for ages and always got long 1500-2500 worded replies that flushed out my characters and the world perfectly. Since it was able to pull from my files and even before I could upload files or use projects it would pull from my anchors.
+
+I tried 5 as well and it just derails everything too, and fails to read my files and lore bible when 4.1 never had difficulty reading files. I've tried it in a solo chat, in a project group like the one you see in the pics but it's just no bueno. I did cancel my subscription which runs out at the end of August because of this is what I have to work with I don't want to be stuck with a broken product waiting for an update until it works. So here's hoping it gets back on track and I can resubscribe soon.
+
+Okay just had to vent, thank you for reading if you did ❤️
+Parent Post Subreddit: ChatGPT
+Parent Post URL: https://www.reddit.com/r/ChatGPT/comments/1mn5tkb/chatgpt_5_thinking_is_useless_for_writing_this_is/

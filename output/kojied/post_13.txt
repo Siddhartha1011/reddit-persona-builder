@@ -1,0 +1,12 @@
+[POST #13]
+Title: Can you actually “work” in AVP?
+Body: I’m curious if people have been able to fully port their workflow into AVP.
+
+I’ve been trying to actually use the Vision Pro to get some work done, but without github and visual studio code, it’s not been the easiest (also obviously no terminal). I could use Mac virtual display, but since I have a M1 MBP the latency is noticeable to the point it’s an adverse experience. I already dropped $4k on this device, renewing my MBP just so I can use it with my AVP is asking a bit too much…
+
+Also where’s Xcode? If Apple wants AVP to be a “work device”, they gotta have at least Xcode right?
+
+I can get the simple stuff like emails done through AVP, but if this device can’t replace my entire workflow, I don’t know if I can justify the price. I’m sure it’ll get resolved down the line (more of a software issue than hardware constraints), but curious to hear how realistic it is for people to port over their workflow to AVP, and what apps you’d like to see ASAP.
+Subreddit: VisionPro
+Subreddit Description: Apple Vision Pro is a spatial computing headset developed by Apple. This subreddit is the largest and best hub for the community!
+URL: https://www.reddit.com/r/VisionPro/comments/1aiwqa2/can_you_actually_work_in_avp/

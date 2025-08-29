@@ -1,0 +1,9 @@
+[COMMENT #2]
+Comment: Yeah I noticed this too. Extremely annoying
+Subreddit: ChatGPT
+Subreddit Description: Subreddit to discuss ChatGPT and AI. Not affiliated with OpenAI. Thanks, Nat!
+URL: https://www.reddit.com/r/ChatGPT/comments/1mvuz5y/keeps_switching_from_legacy_4o_to_5_thinking_i/n9t6i5h/
+Parent Post Title: Keeps switching from legacy 4o to 5 thinking I can't tell the difference.
+Parent Post Body: Pretty much in the title, any ideas why?
+Parent Post Subreddit: ChatGPT
+Parent Post URL: https://www.reddit.com/r/ChatGPT/comments/1mvuz5y/keeps_switching_from_legacy_4o_to_5_thinking_i/

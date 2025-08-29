@@ -1,0 +1,17 @@
+[COMMENT #14]
+Comment: Incredible stuff! How did you maintain character consistency? Did you generate a consistent character image and then use the image-to-video feature?
+Subreddit: ChatGPT
+Subreddit Description: Subreddit to discuss ChatGPT and AI. Not affiliated with OpenAI. Thanks, Nat!
+URL: https://www.reddit.com/r/ChatGPT/comments/1lvtwj3/i_used_ai_to_create_this_short_film_on_human/n2b07h0/
+Parent Post Title: I used AI to create this short film on human cloning (600 prompts, 12 days, $500 budget)
+Parent Post Body: **Kira (Short Film on Human Cloning)**
+
+My new AI-assisted short film is here. *Kira* explores human cloning and the search for identity in today’s world.
+
+It took nearly 600 prompts, 12 days, and a $500 budget to bring this project to life. The entire film was created by one person using a range of AI tools, all listed at the end.
+
+The film is around 17 minutes long. Unfortunately, Reddit doesn't allow videos above 15 minutes. I'm leaving the full film [here ](https://youtu.be/gx8rMzlG29Q?feature=shared)in case you want to see the rest.
+
+Thank you for watching!
+Parent Post Subreddit: ChatGPT
+Parent Post URL: https://www.reddit.com/r/ChatGPT/comments/1lvtwj3/i_used_ai_to_create_this_short_film_on_human/
